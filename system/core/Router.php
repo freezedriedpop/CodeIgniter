@@ -229,6 +229,13 @@ class CI_Router {
 		{
 			return $this->_set_default_controller();
 		}
+		
+		if(!empty($this->directory)){
+			// Check if we should serve from a defined directory
+			if (file_exists(APPPATH.'controllers/'.$this->directory.$segments[0].'.php')){
+				return $segments;
+			}
+		}  
 
 		$this->set_class($segments[0]);
 
